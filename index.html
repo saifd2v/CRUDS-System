@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lilita+One&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CRUDS</title>
+    <style>
+        :root {
+            --input-background: rgba(255, 255, 255, .04);
+            --input-border: rgba(255, 255, 255, .10);
+            --primary-color: #4285ca;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            background-color: #0b1220;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        input {
+            background: var(--input-background);
+            border: 1px solid var(--input-border);
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .createBtn {
+            background: var(--primary-color);
+        }
+
+        .titles, .product-row {
+            display: grid;
+            grid-template-columns: 50px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            width: 100%;
+            text-align: center;
+            align-items: center;
+        }
+
+        .titles h2 {
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-row {
+            color: #fff;
+            margin-top: 10px;
+            padding: 10px 0 10px 0;
+            background: var(--input-background);
+            border-radius: 15px;
+        }
+
+        input.required {
+            border: 1px solid #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <main class="min-w-[60%] mx-auto flex justify-center h-auto pt-[100px] w-auto">
+        <div class="inputs w-full flex flex-col gap-3">
+            <input type="text" id="title" placeholder="Title" class="req w-full rounded-[15px] py-3 px-4 text-white">
+            <div class="pricing w-full flex gap-2 items-center flex-wrap">
+                <input type="text" maxlength="6" class="req rounded-[15px] py-3 px-4 text-white" oninput="calcPrice()" placeholder="Price" id="price">
+                <input type="text" maxlength="6" class="rounded-[15px] py-3 px-4 text-white" oninput="calcPrice()" placeholder="Tax" id="tax">
+                <input type="text" maxlength="6" class="rounded-[15px] py-3 px-4 text-white" oninput="calcPrice()" placeholder="Discount" id="discount">
+                <div><i class="fa-solid fa-hand-holding-dollar text-red-600 text-[1.9rem] mr-[5px]"></i><span id="total" class="text-red-600 font-[700] text-[1.4rem]">0$</span></div>
+            </div>
+            <input type="text" id="count" placeholder="Count" class="w-full rounded-[15px] py-3 px-4 text-white">
+            <input type="text" id="category" placeholder="Category" class="req w-full rounded-[15px] py-3 px-4 text-white">
+            <button class="createBtn py-3 px-4 w-full text-white font-[600] rounded-[15px] transform active:scale-[0.98] duration-300" id="createBtn" onclick="addProduct()">Create</button>
+            <input type="text" oninput="searchProduct(this.value)" id="search" placeholder="Search" class="rounded-[15px] py-3 px-4 text-white">
+        </div>
+    </main>
+
+    <section class="display-products min-w-[60%] mt-[20px] pb-[100px]">
+        <div class="titles">
+            <h2>ID</h2>
+            <h2>Title</h2>
+            <h2>Price</h2>
+            <h2>Tax</h2>
+            <h2>Discount</h2>
+            <h2>Total</h2>
+            <h2>Category</h2>
+            <h2>Update</h2>
+            <h2>Delete</h2>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
